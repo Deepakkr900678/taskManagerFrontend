@@ -147,7 +147,7 @@ export default function Task() {
       <div className="w-full bg-gray-100">
         <main className="p-4">
           <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4" onClick={() => setNotice(true)}>Add Task</button>
-          <div className="bg-white p-4 shadow-md border rounded-md h-[60vh] overflow-x-auto">
+          <div className="bg-white p-4 shadow-md border rounded-md h-[80vh] overflow-x-auto">
             <div className="flex justify-between mb-4">
               <div>
                 <label className="p-2">Search:</label>
