@@ -3,8 +3,6 @@ import axios from 'axios';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import Navbar from "./Navbar";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
-
 function TaskCard({ task, onDelete, onEdit }) {
   return (
     <div className="bg-white p-4 rounded shadow mb-4">
@@ -57,7 +55,7 @@ export default function Task() {
 
   const getAllTasks = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/v1/task/getAllTasks`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/task/getAllTasks`);
       setAllTasks(response.data.tasks);
       setFilteredTasks(response.data.tasks);
     } catch (error) {
@@ -77,7 +75,7 @@ export default function Task() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/api/v1/task/createTask`, formData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/task/createTask`, formData);
       alert('Task created successfully!');
       setNotice(false);
       setFormData({ title: '', description: '' });
@@ -90,7 +88,7 @@ export default function Task() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_URL}/api/v1/task/deleteTaskById/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/task/deleteTaskById/${id}`);
       alert('Task deleted successfully!');
       await getAllTasks();
     } catch (error) {
@@ -104,7 +102,7 @@ export default function Task() {
     console.log(formData, "formData");
     e.preventDefault();
     try {
-      await axios.patch(`${API_URL}/api/v1/task/updateTaskById/${editId}`, formData);
+      await axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/task/updateTaskById/${editId}`, formData);
       alert('Task information updated successfully!');
       setShowEdit(false);
       setEditId('');
@@ -118,7 +116,7 @@ export default function Task() {
   useEffect(() => {
     const getData = async () => {
       if (editId) {
-        const res = await axios.get(`${API_URL}/api/v1/task/getTaskById/${editId}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/task/getTaskById/${editId}`);
         setFormData(res.data.task);
         setShowEdit(true);
       }
